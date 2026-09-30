@@ -1,0 +1,98 @@
+// Waybar layout and module behavior for Sway.
+// Colors live in style.css, which pulls them from ~/.config/themes/current/waybar.css
+{
+  "position": "top",
+  "height": 34,
+  "spacing": 4,
+
+  // Sway starts this bar (swaybar_command) and controls it over IPC:
+  // `bar { mode hide }` makes it a floating overlay that reserves no
+  // space; Super+B (`bar hidden_state toggle`) shows/hides it and it
+  // appears on its own when a workspace turns urgent.
+  "ipc": true,
+  "id": "main",
+
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "custom/brightness",
+    "network",
+    "bluetooth",
+    "battery",
+    "custom/power",
+  ],
+
+  "sway/workspaces": {
+    "format": "{name}",
+    "disable-scroll-wraparound": true,
+  },
+
+  "clock": {
+    "format": "{:%a %b %d   %I:%M %p}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+
+  "tray": {
+    "spacing": 10,
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  muted",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+    },
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+  },
+
+  "custom/brightness": {
+    "exec": "~/.config/sway/scripts/brightness-get.sh",
+    "format": "󰃠  {}%",
+    "interval": "once",
+    "signal": 9,
+    "on-scroll-up": "~/.config/sway/scripts/brightness.sh + 5",
+    "on-scroll-down": "~/.config/sway/scripts/brightness.sh - 5",
+    "tooltip": false,
+  },
+
+  "network": {
+    "format-wifi": "󰖩  {essid}",
+    "format-ethernet": "󰈀  wired",
+    "format-disconnected": "󰖪  offline",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "nm-connection-editor",
+    "on-click-right": "ghostty -e nmtui",
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱  {device_alias}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "on-click": "~/.config/sway/scripts/bluetooth-menu.sh",
+    "on-click-right": "blueman-manager",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄 {icon}  {capacity}%",
+    "format-plugged": "{icon}  {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁿"],
+    "tooltip-format": "{timeTo} ({capacity}%)",
+  },
+
+  "custom/power": {
+    "format": "󰐥",
+    "on-click": "~/.config/sway/scripts/powermenu.sh",
+    "tooltip": false,
+  },
+}

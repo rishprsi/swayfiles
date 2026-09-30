@@ -1,0 +1,12 @@
+/* Noir theme -- SwayNC colors.
+ * Imported by ~/.config/swaync/style.css via themes/current. */
+
+@define-color bg rgba(0, 0, 0, 0.9);
+@define-color surface #16161c;
+@define-color border #242424;
+
+@define-color fg #d0d0d6;
+@define-color muted #7a7a85;
+
+@define-color accent #8fa7c4;
+@define-color critical #c48f8f;

@@ -1,0 +1,24 @@
+/* Noir theme -- Rofi colors.
+ * Rofi layouts (gnomio/hidrot/murz) reference these variables; this file
+ * is imported via themes/current so a theme switch swaps the whole palette.
+ * Noir = pure black window, neutral grays, muted pastel accents. */
+
+* {
+  bg0: #000000e6;
+  bg1: #16161c;
+  fg0: #d0d0d6;
+  fg1: #7a7a85;
+
+  red: #c48f8f;
+  red-trans: #c48f8f2e;
+  green: #9ec49e;
+  green-trans: #9ec49e2e;
+  yellow: #d4b483;
+  yellow-trans: #d4b4832e;
+  blue: #8fa7c4;
+  blue-trans: #8fa7c42e;
+  purple: #b49ac4;
+  purple-trans: #b49ac42e;
+  aqua: #8fc4c4;
+  aqua-trans: #8fc4c42e;
+}

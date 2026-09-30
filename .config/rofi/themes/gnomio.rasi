@@ -1,0 +1,8 @@
+@import "~/.config/themes/current/rofi.rasi"
+@import "~/.config/rofi/rofi-collection/config/general"
+@import "~/.config/rofi/rofi-collection/config/disable-prompt"
+@import "~/.config/rofi/rofi-collection/config/icons"
+@import "~/.config/rofi/rofi-collection/themes/gnomio"
+
+/* Fixed width lived in the old combined theme files, not the layouts. */
+window { width: 35em; }

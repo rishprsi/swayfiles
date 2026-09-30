@@ -1,0 +1,27 @@
+# noir theme -- swaylock colors (lock.sh passes this with -C).
+color=000000
+inside-color=000000cc
+inside-clear-color=000000cc
+inside-caps-lock-color=000000cc
+inside-ver-color=000000cc
+inside-wrong-color=000000cc
+ring-color=8fa7c4
+ring-clear-color=9ec49e
+ring-caps-lock-color=c48f8f
+ring-ver-color=8fa7c4
+ring-wrong-color=c48f8f
+key-hl-color=9ec49e
+bs-hl-color=c48f8f
+caps-lock-key-hl-color=9ec49e
+caps-lock-bs-hl-color=c48f8f
+line-color=00000000
+line-clear-color=00000000
+line-caps-lock-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+separator-color=00000000
+text-color=d0d0d6
+text-clear-color=d0d0d6
+text-caps-lock-color=c48f8f
+text-ver-color=d0d0d6
+text-wrong-color=c48f8f

@@ -1,0 +1,12 @@
+# swayidle (started from sway autostart with -w). Mirrors hypridle.conf:
+# lock after 10 min, screens off after 20 min, lock before suspend.
+
+# `loginctl lock-session` (and the idle timeout below) end up here.
+lock '~/.config/sway/scripts/lock.sh'
+# swaylock -f forks once the screen is locked, and -w makes swayidle wait,
+# so the machine never suspends showing an unlocked desktop.
+before-sleep '~/.config/sway/scripts/lock.sh'
+after-resume 'swaymsg "output * power on"'
+
+timeout 600 'loginctl lock-session'
+timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'

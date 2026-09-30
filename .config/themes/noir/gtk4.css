@@ -1,0 +1,36 @@
+/* Noir theme -- libadwaita (GTK4) color overrides.
+ * Loaded via ~/.config/gtk-4.0/gtk.css -> themes/current/gtk4.css.
+ * Black base + desaturated steel-blue pastels. */
+
+@define-color accent_color #8fa7c4;
+@define-color accent_bg_color #8fa7c4;
+@define-color accent_fg_color #000000;
+
+@define-color window_bg_color #000000;
+@define-color window_fg_color #d0d0d6;
+@define-color view_bg_color #0a0a0d;
+@define-color view_fg_color #d0d0d6;
+
+@define-color headerbar_bg_color #000000;
+@define-color headerbar_fg_color #d0d0d6;
+@define-color headerbar_border_color #242424;
+
+@define-color sidebar_bg_color #050507;
+@define-color sidebar_fg_color #d0d0d6;
+@define-color sidebar_backdrop_color #000000;
+@define-color secondary_sidebar_bg_color #050507;
+@define-color secondary_sidebar_fg_color #d0d0d6;
+
+@define-color card_bg_color #121216;
+@define-color card_fg_color #d0d0d6;
+@define-color popover_bg_color #0d0d10;
+@define-color popover_fg_color #d0d0d6;
+@define-color dialog_bg_color #0d0d10;
+@define-color dialog_fg_color #d0d0d6;
+
+@define-color destructive_color #c48f8f;
+@define-color destructive_bg_color #c48f8f;
+@define-color destructive_fg_color #000000;
+@define-color warning_color #d4b483;
+@define-color success_color #9ec49e;
+@define-color error_color #c48f8f;

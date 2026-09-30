@@ -1,0 +1,22 @@
+# Environment for the sway session only (sourced by ~/.config/sway/session.sh,
+# every assignment is exported). GNOME never sees these.
+
+XDG_CURRENT_DESKTOP=sway
+XDG_SESSION_DESKTOP=sway
+XDG_SESSION_TYPE=wayland
+
+# Qt: native Wayland, styled by qt6ct -> Kvantum (GraphiteDark).
+QT_QPA_PLATFORM="wayland;xcb"
+QT_QPA_PLATFORMTHEME=qt6ct
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+# Toolkits that don't default to Wayland yet.
+ELECTRON_OZONE_PLATFORM_HINT=auto
+SDL_VIDEODRIVER="wayland,x11"
+_JAVA_AWT_WM_NONREPARENTING=1
+
+XCURSOR_SIZE=24
+
+# FreeType stem darkening: slightly thicker glyphs (fonts otherwise render
+# thin with grayscale AA at the XR382CQK's ~111 DPI).
+FREETYPE_PROPERTIES="autofitter:no-stem-darkening=0 cff:no-stem-darkening=0 type1:no-stem-darkening=0 t1cid:no-stem-darkening=0"

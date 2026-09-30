@@ -1,0 +1,27 @@
+# forest theme -- swaylock colors (lock.sh passes this with -C).
+color=000000
+inside-color=000000cc
+inside-clear-color=000000cc
+inside-caps-lock-color=000000cc
+inside-ver-color=000000cc
+inside-wrong-color=000000cc
+ring-color=a3c9a8
+ring-clear-color=a3c9a8
+ring-caps-lock-color=c9a3a3
+ring-ver-color=a3c9a8
+ring-wrong-color=c9a3a3
+key-hl-color=a3c9a8
+bs-hl-color=c9a3a3
+caps-lock-key-hl-color=a3c9a8
+caps-lock-bs-hl-color=c9a3a3
+line-color=00000000
+line-clear-color=00000000
+line-caps-lock-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+separator-color=00000000
+text-color=d0d6d0
+text-clear-color=d0d6d0
+text-caps-lock-color=c9a3a3
+text-ver-color=d0d6d0
+text-wrong-color=c9a3a3

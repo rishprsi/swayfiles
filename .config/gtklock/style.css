@@ -1,0 +1,92 @@
+/* gtklock -- lock screen style (hyprlock look).
+ * Colors come from the active theme's palette (themes/current), so a theme
+ * switch restyles the lock screen too. Widget ids: gtklock's built-in
+ * layout (clock-label, date-label, input-field, ...) and the userinfo
+ * module (user-image, user-name). */
+@import url("../themes/current/waybar.css");
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  text-shadow: none;
+  box-shadow: none;
+}
+
+/* Current wallpaper (set-wallpaper.sh keeps this link updated), dimmed. */
+window {
+  background-color: #000000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("../../.cache/current-wallpaper.img");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#clock-label {
+  color: @accent;
+  font-size: 100pt;
+  font-weight: 800;
+}
+
+#date-label {
+  color: @fg;
+  font-size: 20pt;
+  margin-bottom: 24px;
+}
+
+#user-name {
+  color: @accent;
+  font-size: 16pt;
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+#input-label {
+  color: @muted;
+  font-size: 12pt;
+}
+
+/* The password box: typed characters render as dots. */
+#input-field {
+  color: @fg;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: none;
+  border: 2px solid @border;
+  border-radius: 16px;
+  padding: 10px 16px;
+  min-height: 34px;
+  font-size: 16pt;
+  letter-spacing: 3px;
+  caret-color: @accent;
+}
+
+#input-field:focus {
+  border-color: @accent;
+}
+
+#input-field image {
+  color: @muted;
+}
+
+#unlock-button {
+  color: #000000;
+  background-color: @accent;
+  background-image: none;
+  border: none;
+  border-radius: 12px;
+  padding: 6px 18px;
+  font-weight: 700;
+}
+
+#unlock-button:hover {
+  background-color: @fg;
+}
+
+#warning-label {
+  color: @warning;
+}
+
+#error-label {
+  color: @critical;
+  font-weight: 700;
+}

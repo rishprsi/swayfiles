@@ -1,0 +1,24 @@
+/* Noir theme -- Waybar colors for Sway
+ * The only file that defines colors for the bar.
+ * style.css imports this via themes/current, so switching themes
+ * is just repointing the symlink and reloading waybar.
+ * Noir = pure black base, neutral grays, one muted steel-blue accent. */
+
+@define-color bg rgba(0, 0, 0, 0.85);
+@define-color surface rgba(22, 22, 26, 0.95);
+@define-color border #242424;
+
+@define-color fg #d0d0d6;
+@define-color muted #7a7a85;
+
+@define-color accent #8fa7c4;
+@define-color warning #d4b483;
+@define-color critical #c48f8f;
+
+/* Subtle per-module icon accents (pastel, desaturated for black bg). */
+@define-color blue #8fa7c4;
+@define-color green #9ec49e;
+@define-color yellow #d4b483;
+@define-color red #c48f8f;
+@define-color purple #b49ac4;
+@define-color aqua #8fc4c4;

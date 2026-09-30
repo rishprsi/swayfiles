@@ -1,0 +1,22 @@
+/* Forest theme -- Rofi colors.
+ * Pure black window, pastel green accents. */
+
+* {
+  bg0: #000000e6;
+  bg1: #141614;
+  fg0: #d0d6d0;
+  fg1: #7a857a;
+
+  red: #8fc49e;
+  red-trans: #8fc49e2e;
+  green: #a3c9a8;
+  green-trans: #a3c9a82e;
+  yellow: #ccc9a3;
+  yellow-trans: #ccc9a32e;
+  blue: #a3c9a8;
+  blue-trans: #a3c9a82e;
+  purple: #a3c9a8;
+  purple-trans: #a3c9a82e;
+  aqua: #9ec4bf;
+  aqua-trans: #9ec4bf2e;
+}

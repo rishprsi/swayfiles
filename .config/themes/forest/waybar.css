@@ -1,0 +1,21 @@
+/* Forest theme -- Waybar colors.
+ * Pure black base (like noir) with pastel green accents. */
+
+@define-color bg rgba(0, 0, 0, 0.85);
+@define-color surface rgba(20, 24, 20, 0.95);
+@define-color border #1e241e;
+
+@define-color fg #d0d6d0;
+@define-color muted #7a857a;
+
+@define-color accent #a3c9a8;
+@define-color warning #ccc9a3;
+@define-color critical #c9a3a3;
+
+/* Subtle per-module icon accents (pastel, green-leaning for black bg). */
+@define-color blue #a3b8c9;
+@define-color green #a3c9a8;
+@define-color yellow #ccc9a3;
+@define-color red #c9a3a3;
+@define-color purple #b8a3c9;
+@define-color aqua #9ec4bf;

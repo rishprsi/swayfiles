@@ -1,0 +1,36 @@
+/* Forest theme -- libadwaita (GTK4) color overrides.
+ * Loaded via ~/.config/gtk-4.0/gtk.css -> themes/current/gtk4.css.
+ * Black base + pastel green, matching waybar/swaync/ghostty. */
+
+@define-color accent_color #a3c9a8;
+@define-color accent_bg_color #a3c9a8;
+@define-color accent_fg_color #000000;
+
+@define-color window_bg_color #000000;
+@define-color window_fg_color #d0d6d0;
+@define-color view_bg_color #0a0d0a;
+@define-color view_fg_color #d0d6d0;
+
+@define-color headerbar_bg_color #000000;
+@define-color headerbar_fg_color #d0d6d0;
+@define-color headerbar_border_color #1e241e;
+
+@define-color sidebar_bg_color #050705;
+@define-color sidebar_fg_color #d0d6d0;
+@define-color sidebar_backdrop_color #000000;
+@define-color secondary_sidebar_bg_color #050705;
+@define-color secondary_sidebar_fg_color #d0d6d0;
+
+@define-color card_bg_color #101410;
+@define-color card_fg_color #d0d6d0;
+@define-color popover_bg_color #0d100d;
+@define-color popover_fg_color #d0d6d0;
+@define-color dialog_bg_color #0d100d;
+@define-color dialog_fg_color #d0d6d0;
+
+@define-color destructive_color #c9a3a3;
+@define-color destructive_bg_color #c9a3a3;
+@define-color destructive_fg_color #000000;
+@define-color warning_color #ccc9a3;
+@define-color success_color #a3c9a8;
+@define-color error_color #c9a3a3;

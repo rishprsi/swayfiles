@@ -1,0 +1,34 @@
+# Matugen renders these templates into the "auto" theme whenever
+# matugen-theme.sh runs (theme switch to auto, or wallpaper change while
+# auto is active). Same design language as the manual themes: pure black
+# surfaces + pastel accents from the wallpaper.
+
+[config]
+
+[templates.sway]
+input_path = '~/.config/matugen/templates/sway.conf'
+output_path = '~/.config/themes/auto/sway.conf'
+
+[templates.swaylock]
+input_path = '~/.config/matugen/templates/swaylock'
+output_path = '~/.config/themes/auto/swaylock'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/waybar.css'
+output_path = '~/.config/themes/auto/waybar.css'
+
+[templates.swaync]
+input_path = '~/.config/matugen/templates/swaync.css'
+output_path = '~/.config/themes/auto/swaync.css'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi.rasi'
+output_path = '~/.config/themes/auto/rofi.rasi'
+
+[templates.ghostty]
+input_path = '~/.config/matugen/templates/ghostty.conf'
+output_path = '~/.config/themes/auto/ghostty.conf'
+
+[templates.gtk4]
+input_path = '~/.config/matugen/templates/gtk4.css'
+output_path = '~/.config/themes/auto/gtk4.css'

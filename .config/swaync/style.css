@@ -1,0 +1,133 @@
+/* Colors come from the active theme via themes/current. */
+@import "../themes/current/swaync.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Control center panel */
+.control-center {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 12px;
+  color: @fg;
+  padding: 8px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+/* Header row: title + clear-all */
+.widget-title {
+  color: @accent;
+  margin: 6px 4px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.widget-title > button {
+  color: @fg;
+  background: @surface;
+  border: 1px solid @border;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.widget-title > button:hover {
+  background: @accent;
+  color: @bg;
+}
+
+/* Do Not Disturb toggle */
+.widget-dnd {
+  color: @fg;
+  margin: 6px 4px;
+}
+
+.widget-dnd > switch {
+  background: @surface;
+  border: 1px solid @border;
+  border-radius: 12px;
+}
+
+.widget-dnd > switch:checked {
+  background: @accent;
+}
+
+/* Notifications */
+.notification-row {
+  background: transparent;
+}
+
+.notification {
+  background: @surface;
+  border: 1px solid @border;
+  border-left: 3px solid @accent;
+  border-radius: 10px;
+  margin: 6px 4px;
+  padding: 0;
+}
+
+.notification-content {
+  padding: 8px;
+  color: @fg;
+}
+
+.summary {
+  color: @accent;
+  font-weight: 800;
+}
+
+.body {
+  color: @fg;
+  font-weight: 700;
+}
+
+/* App icon on notifications */
+.notification-content image {
+  border-radius: 6px;
+  margin-right: 8px;
+}
+
+.close-button {
+  background: transparent;
+  color: @muted;
+  border-radius: 8px;
+  margin: 4px;
+  padding: 2px;
+}
+
+.close-button:hover {
+  background: @critical;
+  color: @bg;
+}
+
+.notification-action {
+  background: @surface;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 8px;
+  margin: 4px;
+}
+
+.notification-action:hover {
+  background: @accent;
+  color: @bg;
+}
+
+.notification.critical {
+  border-color: @critical;
+  border-left-color: @critical;
+}
+
+.notification.critical .summary {
+  color: @critical;
+}
+
+/* Floating single notifications (not in control center) */
+.floating-notifications .notification {
+  background: @bg;
+}

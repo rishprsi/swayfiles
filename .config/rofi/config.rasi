@@ -1,0 +1,13 @@
+configuration {
+  font: env(ROFI_FONT, "JetBrainsMono Nerd Font Medium 12");
+  combi-modi: "drun,run,window";
+  modi: "combi";
+  show-icons: true;
+  combi-hide-mode-prefix: false;
+  combi-display-format: "{mode} | {text}";
+  window-format: "{t}";
+}
+
+// Active layout (gnomio / hidrot / murz). Each layout imports its colors
+// from ~/.config/themes/current/rofi.rasi, so a theme switch swaps the palette.
+@theme "~/.config/rofi/themes/hidrot.rasi"

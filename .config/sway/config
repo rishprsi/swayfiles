@@ -1,0 +1,214 @@
+# Sway config -- port of the Hyprland rice (~/.ricefiles) for Ubuntu.
+# Validate after editing:  sway -C
+#
+# Mod keys (macOS layout): ALT = Option (mainMod), SUPER = Command (sysMod)
+set $mainMod Mod1
+set $sysMod Mod4
+# Workspace prev/next. Plain Control would steal word-jumping
+# (Ctrl+Left/Right) from every app; set to "Control" for pure macOS feel.
+set $wsNavMod Mod4+Control
+
+set $scripts ~/.config/sway/scripts
+set $terminal ghostty
+set $fileManager nautilus
+set $menu rofi -show drun
+set $lock $scripts/lock.sh
+
+# Ubuntu ships 50-systemd-user.conf here: exports WAYLAND_DISPLAY, SWAYSOCK,
+# XDG_CURRENT_DESKTOP to systemd --user and D-Bus. Portals (screen share,
+# file pickers), gnome-keyring and user services depend on it.
+include /etc/sway/config.d/*
+
+### Outputs ------------------------------------------------------------------
+# Fallback background; the real wallpaper comes from the state include at the
+# bottom (written by set-wallpaper.sh).
+output * bg #000000 solid_color
+output "Acer Technologies Acer XR382CQK 0x0347B429" mode 3840x1600@75Hz scale 1
+# Names for other monitors: swaymsg -t get_outputs
+
+### Input --------------------------------------------------------------------
+input type:keyboard {
+    xkb_layout us
+}
+input type:pointer {
+    pointer_accel -0.85
+}
+input type:touchpad {
+    tap enabled
+    natural_scroll disabled
+}
+
+### Look ---------------------------------------------------------------------
+font pango:JetBrainsMono Nerd Font 10
+default_border pixel 2
+default_floating_border pixel 2
+title_align center
+gaps inner 2
+gaps outer 4
+focus_follows_mouse yes
+# Drag with Super+left, resize with Super+right (tiled windows too).
+floating_modifier $sysMod normal
+
+# Border colors (client.*) come from the active theme.
+include ~/.config/themes/current/sway.conf
+
+### Bar ----------------------------------------------------------------------
+# Sway owns the waybar process: it restarts it on `swaymsg reload` (theme
+# switches) and drives visibility over IPC. mode hide = overlay that does
+# not reserve space; toggle with Super+B, auto-shows on urgent workspaces.
+bar {
+    id main
+    swaybar_command waybar
+    position top
+    mode hide
+    hidden_state hide
+    modifier none
+}
+
+### Autostart ----------------------------------------------------------------
+# GTK/icon/cursor theme of the active rice theme (GNOME's own look is
+# restored automatically when you log back into GNOME).
+exec $scripts/session-appearance.sh sway
+exec swayidle -w
+exec swaync
+exec swayosd-server
+exec $scripts/polkit-agent.sh
+exec nm-applet --indicator
+exec blueman-applet
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec $scripts/wallpaper-shuffler.sh
+
+### Window rules -------------------------------------------------------------
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [app_id="org.pulseaudio.pavucontrol|pavucontrol"] floating enable
+for_window [app_id="blueman-manager|nm-connection-editor|xdg-desktop-portal-gtk"] floating enable
+for_window [title="^(Open|Save) (File|Folder|As)"] floating enable
+# Don't go idle / lock while something is fullscreen (videos, games).
+for_window [all] inhibit_idle fullscreen
+
+### Keybindings --------------------------------------------------------------
+## App shortcuts (SUPER = Command)
+bindsym $sysMod+q kill
+bindsym $sysMod+Escape exec $lock
+bindsym $sysMod+e exec $fileManager
+bindsym $sysMod+space exec $menu
+bindsym $sysMod+grave focus next
+bindsym $sysMod+Shift+grave focus prev
+bindsym $sysMod+comma exec $terminal -e nvim ~/.config/sway/config
+bindsym $sysMod+b bar hidden_state toggle main
+bindsym $sysMod+Shift+n exec swaync-client -t -sw
+
+## Screenshots (macOS numbers): 3 = region -> clipboard, 4 = region -> file
+bindsym $sysMod+Shift+3 exec $scripts/screenshot.sh region-copy
+bindsym $sysMod+Shift+4 exec $scripts/screenshot.sh region-save
+bindsym Print exec $scripts/screenshot.sh screen-save
+
+## Minimize (scratchpad). Cmd+H on a shown minimized window restores it.
+bindsym $sysMod+h exec $scripts/minimize.sh
+bindsym $sysMod+m exec $scripts/minimize.sh
+bindsym $sysMod+Shift+h scratchpad show
+
+## Mac-style: forward Cmd+key to the app as Ctrl+key (Ctrl+Shift for
+## copy/paste in terminals).
+bindsym --no-repeat $sysMod+c exec $scripts/send-shortcut.sh c
+bindsym --no-repeat $sysMod+v exec $scripts/send-shortcut.sh v
+bindsym --no-repeat $sysMod+x exec $scripts/send-shortcut.sh x
+bindsym --no-repeat $sysMod+a exec $scripts/send-shortcut.sh a
+bindsym --no-repeat $sysMod+z exec $scripts/send-shortcut.sh z
+bindsym --no-repeat $sysMod+w exec $scripts/send-shortcut.sh w
+bindsym --no-repeat $sysMod+Shift+z exec $scripts/send-shortcut.sh z shift
+
+## Clipboard history
+bindsym $sysMod+Shift+v exec cliphist list | rofi -dmenu -i -p clipboard -display-columns 2 | cliphist decode | wl-copy
+
+## Theming
+bindsym $sysMod+Shift+t exec $scripts/theme-switch.sh
+bindsym $sysMod+Shift+w exec $scripts/wallpaper-picker.sh
+bindsym $sysMod+Shift+g exec $scripts/gtk-theme-switch.sh
+bindsym $sysMod+Shift+c exec $scripts/cursor-picker.sh
+
+## Window management (ALT = Option)
+bindsym $mainMod+Return exec $terminal
+bindsym $mainMod+f fullscreen toggle
+bindsym $mainMod+v floating toggle
+bindsym $mainMod+space split toggle
+bindsym $mainMod+slash layout toggle split tabbed stacking
+
+bindsym $mainMod+h focus left
+bindsym $mainMod+j focus down
+bindsym $mainMod+k focus up
+bindsym $mainMod+l focus right
+
+bindsym $mainMod+Shift+h move left
+bindsym $mainMod+Shift+j move down
+bindsym $mainMod+Shift+k move up
+bindsym $mainMod+Shift+l move right
+
+bindsym $mainMod+Control+h resize shrink width 50px
+bindsym $mainMod+Control+j resize grow height 50px
+bindsym $mainMod+Control+k resize shrink height 50px
+bindsym $mainMod+Control+l resize grow width 50px
+
+## Workspaces
+bindsym $mainMod+1 workspace number 1
+bindsym $mainMod+2 workspace number 2
+bindsym $mainMod+3 workspace number 3
+bindsym $mainMod+4 workspace number 4
+bindsym $mainMod+5 workspace number 5
+bindsym $mainMod+6 workspace number 6
+bindsym $mainMod+7 workspace number 7
+bindsym $mainMod+8 workspace number 8
+bindsym $mainMod+9 workspace number 9
+bindsym $mainMod+0 workspace number 10
+
+bindsym $mainMod+Shift+1 move container to workspace number 1
+bindsym $mainMod+Shift+2 move container to workspace number 2
+bindsym $mainMod+Shift+3 move container to workspace number 3
+bindsym $mainMod+Shift+4 move container to workspace number 4
+bindsym $mainMod+Shift+5 move container to workspace number 5
+bindsym $mainMod+Shift+6 move container to workspace number 6
+bindsym $mainMod+Shift+7 move container to workspace number 7
+bindsym $mainMod+Shift+8 move container to workspace number 8
+bindsym $mainMod+Shift+9 move container to workspace number 9
+bindsym $mainMod+Shift+0 move container to workspace number 10
+
+bindsym $wsNavMod+Left workspace prev_on_output
+bindsym $wsNavMod+Right workspace next_on_output
+bindsym --whole-window $mainMod+button4 workspace prev_on_output
+bindsym --whole-window $mainMod+button5 workspace next_on_output
+bindgesture swipe:3:right workspace prev_on_output
+bindgesture swipe:3:left workspace next_on_output
+
+bindsym $mainMod+Shift+Left move workspace to output left
+bindsym $mainMod+Shift+Right move workspace to output right
+bindsym $mainMod+Shift+Up move workspace to output up
+bindsym $mainMod+Shift+Down move workspace to output down
+
+## Scratchpad
+bindsym $mainMod+s scratchpad show
+bindsym $mainMod+Shift+s move scratchpad
+
+## Media keys (--locked: also work on the lock screen)
+bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise --max-volume 100
+bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower
+bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
+bindsym --locked XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
+bindsym --locked XF86MonBrightnessUp exec $scripts/brightness.sh + 10
+bindsym --locked XF86MonBrightnessDown exec $scripts/brightness.sh - 10
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+## Session
+bindsym $sysMod+Shift+r reload
+bindsym $sysMod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+
+### Machine state (last wallpaper, cursor) -- written by the scripts, kept
+### outside the repo. Must stay last so it overrides the defaults above.
+include ~/.local/state/swayfiles/*.conf

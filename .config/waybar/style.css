@@ -1,0 +1,120 @@
+@import "../themes/current/waybar.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  font-weight: 600; /* SemiBold */
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: @fg;
+}
+
+/* Each section is a "card": dark surface, thin outline just lighter
+ * than the background (simulated shadow, macOS-style). */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 10px;
+  margin: 4px 6px 0 6px;
+  padding: 0 4px;
+}
+
+#workspaces button {
+  color: @muted;
+  background: transparent;
+  padding: 0 8px;
+  margin: 3px 2px;
+  border-radius: 7px;
+}
+
+/* sway marks the current workspace .focused (hyprland used .active) */
+#workspaces button.focused {
+  color: @bg;
+  background: @accent;
+}
+
+#workspaces button.urgent {
+  color: @bg;
+  background: @critical;
+}
+
+#workspaces button:hover {
+  color: @fg;
+  background: @surface;
+}
+
+#clock,
+#tray,
+#pulseaudio,
+#custom-brightness,
+#network,
+#bluetooth,
+#battery,
+#custom-power {
+  padding: 0 10px;
+  margin: 3px 2px;
+  border-radius: 7px;
+}
+
+/* Subtle per-module accents so each icon is expressive but not loud. */
+#clock {
+  color: @fg;
+}
+#pulseaudio {
+  color: @blue;
+}
+#custom-brightness {
+  color: @yellow;
+}
+#network {
+  color: @green;
+}
+#bluetooth {
+  color: @aqua;
+}
+#battery {
+  color: @green;
+}
+
+/* Inactive/failure states fall back to muted. */
+#pulseaudio.muted,
+#network.disconnected,
+#bluetooth.disabled {
+  color: @muted;
+}
+
+/* Battery charge states. */
+#battery.charging {
+  color: @green;
+}
+#battery.warning {
+  color: @yellow;
+}
+#battery.critical {
+  color: @red;
+}
+
+#custom-power {
+  color: @red;
+  padding-right: 12px;
+}
+
+#custom-power:hover {
+  color: @bg;
+  background: @critical;
+}
+
+tooltip {
+  background: @surface;
+  border: 1px solid @border;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: @fg;
+}
